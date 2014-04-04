@@ -1,6 +1,9 @@
 class TemplatesController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
+
+    if params[:user_id] != nil
+      @user = User.find(params[:user_id])
+    end
     @templates = Template.all
     render('index.html.erb')
   end

@@ -1,19 +1,65 @@
+<h2><%= flash[:notice] %></h2>
+<h2>Account# <%= @user.id %></h2>
+
+
+<div id="shared_priorities">
+  <h1>Your Shared Wedding Budget Priorities</h1>
+
+<p>The following items are the budget priorities you both selected in the Wedding Budget Checklist.
+    <ul>
+      <% @user.shared_priorities.each do |aspect| %>
+        <li><%= aspect[0].priority %> - <a href="/aspects/<%= aspect[0].id %>"><%= aspect[0].name %></a> ( <%= aspect[0].percentage %> ) - <%= aspect[1] %></li>
+      <% end %>
+    </ul>
+</div>
+
+<div id="self_wrapper">
 <h1><%= @user.name %></h1>
 
-<h3><%= @user.budget %></h3>
+<h3>Your Budget: $<%= @user.budget %></h3>
 
-<h2><%= flash[:notice] %></h2>
+<h2>Your Wedding Budget Checklist Priorities:</h2>
 
-<h2>Update User</h2>
+<ul>
+  <% @user.aspects.order("priority").each do |aspect| %>
+    <li><a href="/aspects/<%= aspect.id%>"><%= aspect.name %></a> priority: <%= aspect.priority %></li>
+  <% end %>
+</ul>
+
+
+</div>
+
+<% if @user.spouse != nil %>
+<div id="spouse_wrapper">
+  <h2><%= @user.spouse != nil ?  "#{@user.spouse.name}"  : "Please enter your spouses account number" %>'s Wedding Budget Checklist Priorities:</h2>
+  <ul>
+  <% @user.spouse.aspects.order("priority").each do |aspect| %>
+    <li><%= aspect.name %> priority: <%= aspect.priority %></li>
+  <% end %>
+</ul>
+<% end %>
+</div>
+
+<div id="update_wrapper">
+  <h3>Update Your Profile</h3>
 <form id="create_user" method="post" action="/users/<%= @user.id %>">
   <input name="_method" type="hidden" value="patch">
   <input id="user_name" name="user[name]" type="hidden" value="<%= @user.name %>">
+  <label for="user_budget">Your Budget</label>
   <input id="user_budget" name="user[budget]" type="text" value="<%= @user.budget %>">
-  <button>Change Budget</button>
+  <br>
+  <label for="user_spouse">Your Spouse's Account Id</lable>
+  <input id="user_spouse" name="user[user_id]" type="text" value="<%= @user.user_id %>">
+  <br>
+  <button>update user</button>
 </form>
+<a href='/templates/pick/<%= @user.id %>'><button>Set Your Budget Priorities</button></a>
+</div>
 
-<a href='/users/'><button>Go Back</button></a> | <a href="/users/<%= @user.id %>"  data-confirm="Clicking OK will delete this user." data-method="delete" rel="nofollow"><button>Delete User</button></a>
 
-</a>
+<footer>
+<a href='/users/'><button>Go Back</button></a> | <a href="/users/<%= @user.id %>"  data-confirm="Clicking OK will delete this user." data-method="delete" rel="nofollow"><button>Delete User</button></a><br>
+<a href="/users/"><button>Go Home</button></a>
+</footer>
 
-<a href='/templates/pick/<%= @user.id %>'><button>Pick the things that are important to you</button></a>
+

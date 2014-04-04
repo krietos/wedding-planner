@@ -1,13 +1,22 @@
 <h1>Templates</h1>
 <h2><%= flash[:notice] %></h2>
+<% if @user != nil%>
+  <form id="checklist_aspects" action="/aspects/<%= @user.id %>" method="post">
+    <% @templates.each do |template| %>
+      <a href='/templates/<%= template.id %>'><%= template.name %></a>
+      <input type="checkbox" name="aspect[<%= template.id %>]"><br>
+    <% end %>
+    <button>Submit</button>
+  </form>
 
-<form id="checklist_aspects" action="/aspects/<%= @user.id %>" method="post">
+<%else%>
+
   <% @templates.each do |template| %>
-    <a href='/templates/<%= template.id %>'><%= template.name %></a>
-    <input type="checkbox" name="<%= template.name %>" value="<%= template.id %>"><br>
+    <a href='/templates/<%= template.id %>'><%= template.name %></a></br>
   <% end %>
-  <button>Submit</button>
-</form>
+
+
+<% end %>
 
 
 <h2>New Template</h2>

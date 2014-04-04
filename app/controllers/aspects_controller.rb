@@ -7,10 +7,13 @@ class AspectsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @aspects = Aspect.all
-    @aspect = Aspect.new(params[:aspect])
+    params[:aspect].each_key do |value|
+      @template = Template.find(value)
+      Aspect.create({name: @template.name, percentage: @template.percentage, user_id: @user.id})
+    end
 
-    redirect_to('/users/#{@user.id}')
+
+    redirect_to("/users/#{@user.id}")
     # if @aspect.save
     #   flash[:notice] = "aspect saved."
     #   redirect_to('/aspects/')
@@ -28,8 +31,8 @@ class AspectsController < ApplicationController
   def update
     @aspect = Aspect.find(params[:id])
     if @aspect.update(params[:aspect])
-      flash[:notice] = "aspect Updated."
-      render('show.html.erb')
+      flash[:notice] = "Account Updated."
+      redirect_to("/aspects/#{@aspect.id}")
     else
       flash[:notice] = "Check all information and resave."
       redirect_to("/aspects/#{@aspect.id}")
@@ -38,8 +41,9 @@ class AspectsController < ApplicationController
 
   def destroy
     @aspect = Aspect.find(params[:id])
+    @user = @aspect.user_id
     @aspect.destroy
-    redirect_to('/aspects/')
+    redirect_to("/users/#{@user}")
   end
 
 end

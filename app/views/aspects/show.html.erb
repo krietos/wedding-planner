@@ -1,19 +1,26 @@
 <h1><%= @aspect.name %></h1>
+<h4>This item is suggested to be <%= @aspect.percentage %> percent of your total budget.</h4>
 
-<h3><%= @aspect.budget %></h3>
 
-<h2><%= flash[:notice] %></h2>
+<h2>Set your Priority for this Aspect</h2>
 
-<h2>Update Aspect</h2>
-<form id="create_aspect" method="post" action="/aspects/<%= @aspect.id %>">
+<form id="priority_choice" method="post" action="/aspects/<%= @aspect.id %>">
   <input name="_method" type="hidden" value="patch">
-  <input id="aspect_name" name="aspect[name]" type="hidden" value="<%= @aspect.name %>">
-  <input id="aspect_budget" name="aspect[budget]" type="text" value="<%= @aspect.budget %>">
-  <button>Change Budget</button>
+  <select id="priority_choice" name="aspect[priority]">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+  <button>Submit Priority</button>
 </form>
 
-<a href='/aspects/'><button>Go Back</button></a> | <a href="/aspects/<%= @aspect.id %>"  data-confirm="Clicking OK will delete this aspect." data-method="delete" rel="nofollow"><button>Delete Aspect</button></a>
-
-</a>
+<a href='/users/<%= @aspect.user_id %>'><button>Go Back</button></a> | <a href="/aspects/<%= @aspect.id %>"  data-confirm="Clicking OK will delete this aspect from your list." data-method="delete" rel="nofollow"><button>Remove Aspect</button></a>
 
 
