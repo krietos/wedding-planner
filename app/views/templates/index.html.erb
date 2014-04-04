@@ -1,0 +1,14 @@
+<h1>Templates</h1>
+
+<ul>
+  <% @templates.each do |template| %>
+    <li><a href='/templates/<%= template.id %>'><%= template.name %></a></li>
+  <% end %>
+</ul>
+
+<h2>New Template</h2>
+<form id="create_template" method="post" action="/templates">
+  <input id="template_name" name="template[name]" type="text" placeholder="Template Name">
+  <input id="template_percentage" name="template[percentage]" type="text" placeholder="Percentage of Total Budget">
+  <button>Create Template</button>
+</form>
