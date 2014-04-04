@@ -1,0 +1,14 @@
+<h1>Aspects</h1>
+<h2><%= flash[:notice] %></h2>
+<ul>
+  <% @aspects.each do |aspect| %>
+    <li><a href='/aspects/<%= aspect.id %>'><%= aspect.name %></a></li>
+  <% end %>
+</ul>
+
+<h2>New Aspect</h2>
+<form id="create_aspect" method="post" action="/aspects">
+  <input id="aspect_name" name="aspect[name]" type="text" placeholder="aspect Name">
+  <input id="aspect_budget" name="aspect[budget]" type="text" placeholder="Budget">
+  <button>Create Aspect</button>
+</form>

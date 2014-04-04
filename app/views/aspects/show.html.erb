@@ -1,0 +1,19 @@
+<h1><%= @aspect.name %></h1>
+
+<h3><%= @aspect.budget %></h3>
+
+<h2><%= flash[:notice] %></h2>
+
+<h2>Update Aspect</h2>
+<form id="create_aspect" method="post" action="/aspects/<%= @aspect.id %>">
+  <input name="_method" type="hidden" value="patch">
+  <input id="aspect_name" name="aspect[name]" type="hidden" value="<%= @aspect.name %>">
+  <input id="aspect_budget" name="aspect[budget]" type="text" value="<%= @aspect.budget %>">
+  <button>Change Budget</button>
+</form>
+
+<a href='/aspects/'><button>Go Back</button></a> | <a href="/aspects/<%= @aspect.id %>"  data-confirm="Clicking OK will delete this aspect." data-method="delete" rel="nofollow"><button>Delete Aspect</button></a>
+
+</a>
+
+
