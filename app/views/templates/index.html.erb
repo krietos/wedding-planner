@@ -1,5 +1,5 @@
 <h1>Templates</h1>
-
+<h2><%= flash[:notice] %></h2>
 <ul>
   <% @templates.each do |template| %>
     <li><a href='/templates/<%= template.id %>'><%= template.name %></a></li>

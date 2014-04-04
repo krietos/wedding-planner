@@ -1,14 +1,12 @@
 Wedding Checklist App
 
-As an Administrator, I can create aspect_templates for each 'part' of a wedding, and these populate the wedding budget checklist.
+As an Administrator, I can create an aspect_template which includes a name and a projected percentage of the total budget.
 
-As an Administrator, each aspect_template I can create includes a name, a projected percentage of the total budget
+As an Administrator, I can create a wedding budget checklist page and populate it with aspect_templates.
 
-As a User, I can create a profile to use the wedding checklist.
+As a User, I can create a profile to use the wedding checklist and set my total budget.
 
-As a User, I can set my total budget.
-
-As a User, I can choose which of the aspects are most important to me.
+As a User, on the wedding budget checklist, I can choose which of the aspects are most important to me.
 
 As a User, I can assign a priority level to each aspect I have chosen.
 

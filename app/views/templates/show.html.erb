@@ -2,4 +2,18 @@
 
 <h3><%= @template.percentage %></h3>
 
-<a href='/templates/'>Go Back</a>
+<h2><%= flash[:notice] %></h2>
+
+<h2>Update Template</h2>
+<form id="create_template" method="post" action="/templates/<%= @template.id %>">
+  <input name="_method" type="hidden" value="patch">
+  <input id="template_name" name="template[name]" type="text"  value="<%= @template.name %>">
+  <input id="template_percentage" name="template[percentage]" type="text" value="<%= @template.percentage %>">
+  <button>Update Template</button>
+</form>
+
+<a href='/templates/'><button>Go Back</button></a> | <a href="/templates/<%= @template.id %>"  data-confirm="Clicking OK will delete this template." data-method="delete" rel="nofollow"><button>Delete Template</button></a>
+
+</a>
+
+

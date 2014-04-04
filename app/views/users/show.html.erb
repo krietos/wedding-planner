@@ -1,0 +1,19 @@
+<h1><%= @user.name %></h1>
+
+<h3><%= @user.budget %></h3>
+
+<h2><%= flash[:notice] %></h2>
+
+<h2>Update User</h2>
+<form id="create_user" method="post" action="/users/<%= @user.id %>">
+  <input name="_method" type="hidden" value="patch">
+  <input id="user_name" name="user[name]" type="hidden" value="<%= @user.name %>">
+  <input id="user_budget" name="user[budget]" type="text" value="<%= @user.budget %>">
+  <button>Change Budget</button>
+</form>
+
+<a href='/users/'><button>Go Back</button></a> | <a href="/users/<%= @user.id %>"  data-confirm="Clicking OK will delete this user." data-method="delete" rel="nofollow"><button>Delete User</button></a>
+
+</a>
+
+
